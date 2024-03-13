@@ -44,7 +44,7 @@ HRESULT CWebBrowserAppDlg::ExecuteScriptResponse(HRESULT errorCode, LPCWSTR resu
 
 void CWebBrowserAppDlg::AboutClicked()
 {
-    AfxMessageBox("This application is designed and developed by Vladimir Novick");
+    AfxMessageBox(L"This application is designed and developed by Vladimir Novick");
 }
 
 BEGIN_MESSAGE_MAP(CWebBrowserAppDlg, CDialog)
@@ -195,7 +195,7 @@ void CWebBrowserAppDlg::InitializeWebView()
         }
         else
         {
-            AfxMessageBox("Failed to create webview environment");
+            AfxMessageBox(L"Failed to create webview environment");
         }
     }
 }
@@ -206,7 +206,7 @@ HRESULT CWebBrowserAppDlg::DCompositionCreateDevice2(IUnknown* renderingDevice, 
     static decltype(::DCompositionCreateDevice2)* fnCreateDCompDevice2 = nullptr;
     if (fnCreateDCompDevice2 == nullptr)
     {
-        HMODULE hmod = ::LoadLibraryEx("dcomp.dll", nullptr, 0);
+        HMODULE hmod = ::LoadLibraryEx(L"dcomp.dll", nullptr, 0);
         if (hmod != nullptr)
         {
             fnCreateDCompDevice2 = reinterpret_cast<decltype(::DCompositionCreateDevice2)*>(
@@ -271,7 +271,7 @@ HRESULT CWebBrowserAppDlg::OnCreateCoreWebView2ControllerCompleted(HRESULT resul
        
 
 
-        HRESULT hresult = m_webView->Navigate(L"https://www.bing.com/");
+        HRESULT hresult = m_webView->Navigate(L"file:///C:/src/AVBible/Help/index.html");
 
         if (hresult == S_OK)
         {
